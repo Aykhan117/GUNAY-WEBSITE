@@ -1,0 +1,1175 @@
+<!doctype html>
+<html lang="az">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#0b1220" />
+  <title>Günay Academy — Təhsil Platforması</title>
+  <meta name="description" content="Tələbələr üçün rahat, sürətli və müasir təhsil platforması. Kurslar, müəllimlər, cədvəl və əlaqə." />
+
+  <style>
+    :root{
+      --bg: #0b1220;
+      --panel: rgba(255,255,255,.06);
+      --panel2: rgba(255,255,255,.09);
+      --text: rgba(255,255,255,.92);
+      --muted: rgba(255,255,255,.70);
+      --muted2: rgba(255,255,255,.55);
+      --line: rgba(255,255,255,.12);
+      --brand: #6ee7ff;
+      --brand2: #a78bfa;
+      --ok: #34d399;
+      --warn: #fbbf24;
+      --danger: #fb7185;
+      --shadow: 0 20px 60px rgba(0,0,0,.35);
+      --radius: 18px;
+      --radius2: 28px;
+      --max: 1180px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin: 0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Apple Color Emoji","Segoe UI Emoji";
+      color: var(--text);
+      background:
+        radial-gradient(900px 600px at 15% -10%, rgba(110,231,255,.16), transparent 60%),
+        radial-gradient(900px 600px at 85% 0%, rgba(167,139,250,.16), transparent 60%),
+        radial-gradient(900px 600px at 50% 120%, rgba(52,211,153,.10), transparent 60%),
+        var(--bg);
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    .container{ max-width: var(--max); padding: 0 18px; margin: 0 auto; }
+
+    /* Header */
+    header{
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(to bottom, rgba(11,18,32,.82), rgba(11,18,32,.55));
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 14px 0;
+      gap: 14px;
+    }
+    .brand{
+      display:flex; align-items:center; gap: 10px; min-width: 220px;
+    }
+    .logo{
+      width: 40px; height: 40px;
+      border-radius: 14px;
+      background:
+        radial-gradient(circle at 30% 30%, rgba(110,231,255,.9), transparent 55%),
+        radial-gradient(circle at 70% 70%, rgba(167,139,250,.9), transparent 55%),
+        rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.14);
+      box-shadow: 0 10px 30px rgba(0,0,0,.25);
+    }
+    .brand strong{ display:block; font-size: 14px; letter-spacing: .2px; }
+    .brand span{ display:block; font-size: 12px; color: var(--muted2); margin-top: 2px; }
+
+    nav ul{
+      list-style: none;
+      display:flex;
+      gap: 14px;
+      padding: 0; margin: 0;
+      align-items:center;
+    }
+    nav a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 9px 10px;
+      border-radius: 12px;
+      border: 1px solid transparent;
+    }
+    nav a:hover{
+      color: var(--text);
+      border-color: rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+
+    .actions{
+      display:flex; align-items:center; gap: 10px;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 8px;
+      border-radius: 14px;
+      padding: 10px 14px;
+      font-weight: 600;
+      font-size: 13px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.06);
+      color: var(--text);
+      cursor: pointer;
+      transition: transform .12s ease, background .12s ease, border-color .12s ease;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.09); border-color: rgba(255,255,255,.20); }
+    .btn:active{ transform: translateY(0); }
+    .btn.primary{
+      border: none;
+      background: linear-gradient(135deg, rgba(110,231,255,.95), rgba(167,139,250,.95));
+      color: #0b1220;
+    }
+    .btn.primary:hover{ filter: brightness(1.05); }
+    .btn.ghost{
+      background: transparent;
+      border-color: rgba(255,255,255,.14);
+    }
+
+    .burger{
+      display:none;
+      width: 44px; height: 40px;
+      border-radius: 14px;
+    }
+
+    /* Mobile nav */
+    .mobile{
+      display:none;
+      padding: 10px 0 16px;
+    }
+    .mobile .panel{
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 16px;
+      padding: 10px;
+    }
+    .mobile a{ display:block; padding: 10px 12px; border-radius: 12px; color: var(--muted); }
+    .mobile a:hover{ background: rgba(255,255,255,.06); color: var(--text); }
+
+    /* Hero */
+    .hero{
+      padding: 54px 0 18px;
+    }
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 18px;
+      align-items: stretch;
+    }
+    .card{
+      border-radius: var(--radius2);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
+      box-shadow: var(--shadow);
+    }
+    .heroMain{
+      padding: 26px;
+      position: relative;
+      overflow:hidden;
+    }
+    .badge{
+      display:inline-flex;
+      align-items:center;
+      gap: 8px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(110,231,255,.10);
+      border: 1px solid rgba(110,231,255,.25);
+      color: rgba(255,255,255,.86);
+      font-size: 12px;
+    }
+    .hero h1{
+      margin: 14px 0 10px;
+      font-size: clamp(28px, 4.4vw, 46px);
+      line-height: 1.06;
+      letter-spacing: -0.6px;
+    }
+    .hero p{
+      margin: 0 0 18px;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.6;
+      max-width: 62ch;
+    }
+    .heroCtas{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      margin-top: 14px;
+    }
+    .miniRow{
+      display:flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-top: 18px;
+      color: var(--muted2);
+      font-size: 12px;
+    }
+    .miniRow .pill{
+      display:inline-flex;
+      gap: 8px;
+      align-items:center;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      border-radius: 999px;
+    }
+
+    .heroSide{
+      padding: 20px;
+      display:flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .sideTop{
+      padding: 16px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+    }
+    .sideTop h3{ margin: 0 0 6px; font-size: 14px; }
+    .sideTop p{ margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+
+    .quickForm{
+      margin-top: 12px;
+      display:grid;
+      gap: 10px;
+    }
+    .field{
+      display:grid;
+      gap: 6px;
+    }
+    label{ font-size: 12px; color: var(--muted2); }
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(0,0,0,.18);
+      color: var(--text);
+      outline: none;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.40); }
+    input:focus, select:focus, textarea:focus{
+      border-color: rgba(110,231,255,.45);
+      box-shadow: 0 0 0 4px rgba(110,231,255,.10);
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+
+    .finePrint{
+      margin-top: 10px;
+      font-size: 11.5px;
+      color: var(--muted2);
+      line-height: 1.5;
+    }
+
+    /* Sections */
+    section{ padding: 26px 0; }
+    .sectionHead{
+      display:flex;
+      align-items:flex-end;
+      justify-content: space-between;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .sectionHead h2{
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -0.2px;
+    }
+    .sectionHead p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.5;
+      max-width: 62ch;
+    }
+
+    .grid3{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+    .grid2{
+      display:grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 12px;
+    }
+
+    .tile{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      padding: 14px;
+    }
+    .tile h3{ margin: 0 0 6px; font-size: 14px; }
+    .tile p{ margin: 0; color: var(--muted); font-size: 12.5px; line-height: 1.55; }
+    .tagRow{ margin-top: 10px; display:flex; flex-wrap: wrap; gap: 8px; }
+    .tag{
+      font-size: 11.5px;
+      color: rgba(255,255,255,.80);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding: 6px 8px;
+      border-radius: 999px;
+    }
+
+    .course{
+      display:flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      min-height: 190px;
+    }
+    .courseTop{
+      display:flex; align-items:flex-start; justify-content: space-between; gap: 10px;
+    }
+    .course h3{ margin: 0; font-size: 14px; }
+    .meta{ font-size: 12px; color: var(--muted2); margin-top: 6px; line-height: 1.4; }
+    .price{
+      font-weight: 800;
+      font-size: 13px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(52,211,153,.12);
+      border: 1px solid rgba(52,211,153,.24);
+      color: rgba(255,255,255,.9);
+      white-space: nowrap;
+    }
+    .courseActions{
+      display:flex; gap: 10px; margin-top: auto; flex-wrap: wrap;
+    }
+
+    /* Schedule */
+    .tableWrap{
+      overflow: auto;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+    }
+    table{
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 720px;
+    }
+    th, td{
+      padding: 12px 12px;
+      border-bottom: 1px solid rgba(255,255,255,.10);
+      text-align: left;
+      font-size: 13px;
+      color: var(--muted);
+    }
+    th{ color: rgba(255,255,255,.86); font-size: 12.5px; }
+    tr:hover td{ background: rgba(255,255,255,.03); color: rgba(255,255,255,.84); }
+
+    /* FAQ */
+    details{
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      padding: 12px 14px;
+    }
+    details summary{
+      cursor: pointer;
+      font-weight: 700;
+      color: rgba(255,255,255,.86);
+      outline: none;
+    }
+    details p{
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    /* Footer */
+    footer{
+      padding: 24px 0 40px;
+      color: var(--muted2);
+    }
+    .footerGrid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 12px;
+      align-items:start;
+    }
+    .links{
+      display:flex; gap: 10px; flex-wrap: wrap; margin-top: 10px;
+    }
+    .links a{
+      padding: 8px 10px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      font-size: 12.5px;
+    }
+    .links a:hover{ color: var(--text); background: rgba(255,255,255,.06); }
+
+    /* Modal */
+    .modalBackdrop{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.58);
+      display:none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      z-index: 100;
+    }
+    .modal{
+      width: min(560px, 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: linear-gradient(180deg, rgba(18,28,52,.96), rgba(11,18,32,.92));
+      box-shadow: 0 30px 80px rgba(0,0,0,.55);
+      overflow:hidden;
+    }
+    .modalHeader{
+      padding: 16px 16px 10px;
+      display:flex;
+      align-items:flex-start;
+      justify-content: space-between;
+      gap: 10px;
+      border-bottom: 1px solid rgba(255,255,255,.12);
+    }
+    .modalHeader h3{ margin: 0; font-size: 15px; }
+    .modalHeader p{ margin: 6px 0 0; color: var(--muted); font-size: 12.5px; line-height: 1.5; }
+    .modalBody{ padding: 14px 16px 16px; display:grid; gap: 10px; }
+    .close{
+      border-radius: 14px;
+      padding: 8px 10px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.04);
+      color: var(--text);
+      cursor:pointer;
+    }
+
+    /* Toast */
+    .toast{
+      position: fixed;
+      right: 16px;
+      bottom: 16px;
+      z-index: 110;
+      display:none;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.14);
+      background: rgba(17,27,49,.92);
+      backdrop-filter: blur(10px);
+      padding: 12px 12px;
+      box-shadow: 0 18px 60px rgba(0,0,0,.45);
+      max-width: 360px;
+    }
+    .toast strong{ display:block; font-size: 13px; margin-bottom: 4px; }
+    .toast span{ display:block; color: var(--muted); font-size: 12.5px; line-height: 1.45; }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{ grid-template-columns: 1fr; }
+      .grid3{ grid-template-columns: 1fr; }
+      .grid2{ grid-template-columns: 1fr; }
+      nav ul{ display:none; }
+      .burger{ display:inline-flex; }
+      .brand{ min-width: unset; }
+      .footerGrid{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="Günay Academy">
+          <div class="logo" aria-hidden="true"></div>
+          <div>
+            <strong>Günay Academy</strong>
+            <span>Tələbələr üçün rahat platforma</span>
+          </div>
+        </a>
+
+        <nav aria-label="Əsas naviqasiya">
+          <ul>
+            <li><a href="#courses">Kurslar</a></li>
+            <li><a href="#schedule">Cədvəl</a></li>
+            <li><a href="#teachers">Müəllimlər</a></li>
+            <li><a href="#faq">FAQ</a></li>
+            <li><a href="#contact">Əlaqə</a></li>
+          </ul>
+        </nav>
+
+        <div class="actions">
+          <button class="btn ghost" id="btnWhatsApp" type="button" title="WhatsApp ilə yazın">💬 WhatsApp</button>
+          <button class="btn primary" id="btnEnrollTop" type="button">🎓 Qeydiyyat</button>
+          <button class="btn burger" id="btnBurger" type="button" aria-label="Menyunu aç">☰</button>
+        </div>
+      </div>
+
+      <div class="mobile" id="mobileNav" aria-label="Mobil menyu">
+        <div class="panel">
+          <a href="#courses" class="mobileLink">Kurslar</a>
+          <a href="#schedule" class="mobileLink">Cədvəl</a>
+          <a href="#teachers" class="mobileLink">Müəllimlər</a>
+          <a href="#faq" class="mobileLink">FAQ</a>
+          <a href="#contact" class="mobileLink">Əlaqə</a>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <div class="container hero">
+      <div class="heroGrid">
+        <div class="card heroMain">
+          <div class="badge">✨ Yeni dizayn • Daha sürətli • Mobil uyğundur</div>
+          <h1>Şagirdlər üçün sadə, gözəl və istifadəsi rahat təhsil saytı</h1>
+          <p>
+            Kurslar, müəllimlər, cədvəl və əlaqə bir səhifədə. Düymələr işləkdir,
+            mobil menyu rahatdır, tələbə ilə əlaqə (WhatsApp + form) asandır.
+          </p>
+
+          <div class="heroCtas">
+            <a class="btn primary" href="#courses">📚 Kurslara bax</a>
+            <button class="btn" id="btnEnrollHero" type="button">📝 İndi qeydiyyat</button>
+            <a class="btn ghost" href="#contact">✉️ Sual ver</a>
+          </div>
+
+          <div class="miniRow" aria-label="Üstünlüklər">
+            <div class="pill">⚡ Sürətli açılış</div>
+            <div class="pill">📱 Mobil-first</div>
+            <div class="pill">🧭 Aydın naviqasiya</div>
+            <div class="pill">✅ Form yoxlaması</div>
+          </div>
+        </div>
+
+        <aside class="card heroSide" aria-label="Sürətli müraciət">
+          <div class="sideTop">
+            <h3>📌 Sürətli müraciət</h3>
+            <p>2 dəqiqəyə məlumat göndərin — sizi geri dönüş edək.</p>
+
+            <form class="quickForm" id="quickLeadForm">
+              <div class="field">
+                <label for="qName">Ad Soyad</label>
+                <input id="qName" name="name" placeholder="Məs: Aykhan Karimov" required />
+              </div>
+              <div class="field">
+                <label for="qPhone">Telefon</label>
+                <input id="qPhone" name="phone" placeholder="+994 xx xxx xx xx" inputmode="tel" required />
+              </div>
+              <div class="field">
+                <label for="qCourse">Maraqlandığınız kurs</label>
+                <select id="qCourse" name="course" required>
+                  <option value="" selected disabled>Seçin…</option>
+                  <option>İngilis dili</option>
+                  <option>Riyaziyyat</option>
+                  <option>İT / Proqramlaşdırma</option>
+                  <option>Hazırlıq / Abituriyent</option>
+                  <option>Digər</option>
+                </select>
+              </div>
+
+              <button class="btn primary" type="submit">Göndər</button>
+
+              <div class="finePrint">
+                * GitHub Pages-də server olmadığı üçün bu demo form məlumatı e-poçt və ya WhatsApp ilə göndərmə variantı verir.
+                Aşağıda “Contact” bölməsində Formspree kimi hazır həll də göstərilib.
+              </div>
+            </form>
+          </div>
+
+          <div class="tile">
+            <h3>🕘 İş saatları</h3>
+            <p>Həftəiçi: 10:00–19:00 <br/> Şənbə: 10:00–16:00</p>
+          </div>
+
+          <div class="tile">
+            <h3>📍 Ünvan</h3>
+            <p>Buraya akademiyanın ünvanını yazın (məs: Bakı, …)</p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <section id="courses">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Kurslar</h2>
+            <p>Ən populyar kursları kart şəklində göstərin. “Ətraflı” və “Qeydiyyat” düymələri işləyir.</p>
+          </div>
+          <button class="btn" id="btnSeeAll" type="button">🔎 Hamısını göstər</button>
+        </div>
+
+        <div class="grid3" id="courseGrid">
+          <article class="course" data-course="İngilis dili">
+            <div class="courseTop">
+              <div>
+                <h3>İngilis dili</h3>
+                <div class="meta">Səviyyələr: A1–C1 • Danışıq + qrammatika</div>
+              </div>
+              <div class="price">₼—/ay</div>
+            </div>
+            <div class="tagRow">
+              <span class="tag">Sınaq dərsi</span>
+              <span class="tag">Kiçik qruplar</span>
+              <span class="tag">Həftəiçi / həftəsonu</span>
+            </div>
+            <div class="courseActions">
+              <button class="btn" data-action="details" type="button">ℹ️ Ətraflı</button>
+              <button class="btn primary" data-action="enroll" type="button">🎓 Qeydiyyat</button>
+            </div>
+          </article>
+
+          <article class="course" data-course="Riyaziyyat">
+            <div class="courseTop">
+              <div>
+                <h3>Riyaziyyat</h3>
+                <div class="meta">Məktəb + abituriyent hazırlığı • Test izahı</div>
+              </div>
+              <div class="price">₼—/ay</div>
+            </div>
+            <div class="tagRow">
+              <span class="tag">Nəticə yönümlü</span>
+              <span class="tag">Ev tapşırığı</span>
+              <span class="tag">İrəliləyiş izləmə</span>
+            </div>
+            <div class="courseActions">
+              <button class="btn" data-action="details" type="button">ℹ️ Ətraflı</button>
+              <button class="btn primary" data-action="enroll" type="button">🎓 Qeydiyyat</button>
+            </div>
+          </article>
+
+          <article class="course" data-course="İT / Proqramlaşdırma">
+            <div class="courseTop">
+              <div>
+                <h3>İT / Proqramlaşdırma</h3>
+                <div class="meta">Frontend / Backend əsasları • Layihə yönümlü dərslər</div>
+              </div>
+              <div class="price">₼—/ay</div>
+            </div>
+            <div class="tagRow">
+              <span class="tag">Praktika</span>
+              <span class="tag">Mentor dəstəyi</span>
+              <span class="tag">Portfolio</span>
+            </div>
+            <div class="courseActions">
+              <button class="btn" data-action="details" type="button">ℹ️ Ətraflı</button>
+              <button class="btn primary" data-action="enroll" type="button">🎓 Qeydiyyat</button>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="schedule">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Cədvəl nümunəsi</h2>
+            <p>Bu bölmə tələbələr üçün “nə vaxt dərs var?” sualını dərhal cavablayır.</p>
+          </div>
+          <button class="btn" id="btnDownloadSchedule" type="button">⬇️ Cədvəli yüklə</button>
+        </div>
+
+        <div class="tableWrap" role="region" aria-label="Dərs cədvəli">
+          <table>
+            <thead>
+              <tr>
+                <th>Gün</th>
+                <th>Saat</th>
+                <th>Kurs</th>
+                <th>Format</th>
+                <th>Qeyd</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>B.e.</td><td>18:00–19:30</td><td>İngilis dili</td><td>Qrup</td><td>A2–B1</td>
+              </tr>
+              <tr>
+                <td>Ç.a.</td><td>19:00–20:30</td><td>Riyaziyyat</td><td>Qrup</td><td>Abituriyent</td>
+              </tr>
+              <tr>
+                <td>Ç.</td><td>18:30–20:00</td><td>İT / Proqramlaşdırma</td><td>Qrup</td><td>Başlanğıc</td>
+              </tr>
+              <tr>
+                <td>Ş.</td><td>11:00–12:30</td><td>İngilis dili</td><td>Qrup</td><td>Danışıq klubu</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <section id="teachers">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Müəllimlər</h2>
+            <p>Şagird etibarını artıran ən vacib hissə. Fotoları sonra əlavə edə bilərsiniz.</p>
+          </div>
+        </div>
+
+        <div class="grid3">
+          <div class="tile">
+            <h3>👩‍🏫 Müəllim 1</h3>
+            <p>İxtisas • Təcrübə • Qısa bio. (Burada real məlumatları yazın.)</p>
+            <div class="tagRow">
+              <span class="tag">Sertifikat</span><span class="tag">5+ il</span><span class="tag">Sınaq dərsi</span>
+            </div>
+          </div>
+          <div class="tile">
+            <h3>👨‍🏫 Müəllim 2</h3>
+            <p>İxtisas • Təcrübə • Qısa bio. (Burada real məlumatları yazın.)</p>
+            <div class="tagRow">
+              <span class="tag">Nəticələr</span><span class="tag">Mentor</span><span class="tag">Dəstək</span>
+            </div>
+          </div>
+          <div class="tile">
+            <h3>👩‍🏫 Müəllim 3</h3>
+            <p>İxtisas • Təcrübə • Qısa bio. (Burada real məlumatları yazın.)</p>
+            <div class="tagRow">
+              <span class="tag">Qrup</span><span class="tag">Fərdi</span><span class="tag">Online</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Tez-tez verilən suallar</h2>
+            <p>Burada ən çox verilən sualları yazın ki, tələbələr sizə az zəng edib daha tez qərar versin.</p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <details>
+            <summary>Sınaq dərsi varmı?</summary>
+            <p>Bəli. Sınaq dərsi və səviyyə yoxlanışı üçün əlaqə saxlayın.</p>
+          </details>
+          <details>
+            <summary>Qeydiyyat üçün nə lazımdır?</summary>
+            <p>Ad, telefon və seçdiyiniz kurs. Sonra menecer sizinlə əlaqə saxlayacaq.</p>
+          </details>
+          <details>
+            <summary>Online dərslər də olur?</summary>
+            <p>Bəli. Online format üçün ayrıca qrup və cədvəl yarada bilərsiniz.</p>
+          </details>
+          <details>
+            <summary>Ödəniş necə olur?</summary>
+            <p>Bu hissəni öz qaydalarınıza görə yazın (aylıq / paket / endirim və s.).</p>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="container">
+        <div class="sectionHead">
+          <div>
+            <h2>Əlaqə və tələbələrlə kommunikasiya</h2>
+            <p>
+              GitHub Pages statik hostingdir. Ona görə form göndərmək üçün 3 yol var:
+              (1) mailto, (2) WhatsApp, (3) Formspree kimi servis.
+            </p>
+          </div>
+        </div>
+
+        <div class="grid2">
+          <div class="tile">
+            <h3>✉️ Bizə yazın</h3>
+            <p>Formu doldurun. “Göndər” düyməsi məlumatı e-poçt/WhatsApp üçün hazır mesaj kimi hazırlayacaq.</p>
+
+            <form id="contactForm" style="margin-top:12px; display:grid; gap:10px;">
+              <div class="field">
+                <label for="cName">Ad Soyad</label>
+                <input id="cName" name="name" placeholder="Ad Soyad" required />
+              </div>
+              <div class="field">
+                <label for="cPhone">Telefon</label>
+                <input id="cPhone" name="phone" placeholder="+994 xx xxx xx xx" inputmode="tel" required />
+              </div>
+              <div class="field">
+                <label for="cMsg">Mesaj</label>
+                <textarea id="cMsg" name="message" placeholder="Sualınızı yazın…" required></textarea>
+              </div>
+
+              <div style="display:flex; gap:10px; flex-wrap:wrap;">
+                <button class="btn primary" type="submit">📨 Göndər</button>
+                <button class="btn" type="button" id="btnMailTo">📧 E-poçt ilə</button>
+                <button class="btn" type="button" id="btnWAFromForm">💬 WhatsApp ilə</button>
+              </div>
+
+              <div class="finePrint">
+                <strong>Formspree (opsional):</strong> Formun <code>action</code> hissəsinə Formspree linki qoysanız,
+                məlumatlar birbaşa sizin e-poçtunuza gələcək. (Servis qeydiyyatı tələb edir.)
+              </div>
+            </form>
+          </div>
+
+          <div class="tile">
+            <h3>📞 Əlaqə məlumatları</h3>
+            <p>
+              Aşağıdakı yerləri öz real məlumatlarınızla dəyişin:
+              <br/><br/>
+              <strong>Telefon:</strong> +994 XX XXX XX XX<br/>
+              <strong>Email:</strong> info@gunayacademy.az<br/>
+              <strong>Ünvan:</strong> Bakı, …
+            </p>
+
+            <div class="links">
+              <a href="#top">Yuxarı</a>
+              <a href="#courses">Kurslar</a>
+              <a href="#schedule">Cədvəl</a>
+              <a href="#faq">FAQ</a>
+            </div>
+
+            <div style="margin-top:12px; display:flex; gap:10px; flex-wrap:wrap;">
+              <button class="btn" id="btnCall" type="button">📞 Zəng et</button>
+              <button class="btn" id="btnMap" type="button">🗺️ Xəritə</button>
+              <button class="btn primary" id="btnEnrollBottom" type="button">🎓 Qeydiyyat</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <div class="footerGrid">
+          <div>
+            <div style="display:flex; align-items:center; gap:10px;">
+              <div class="logo" aria-hidden="true" style="width:34px;height:34px;border-radius:14px;"></div>
+              <div>
+                <div style="font-weight:800; color: rgba(255,255,255,.90);">Günay Academy</div>
+                <div style="font-size:12.5px;">© <span id="year"></span> Bütün hüquqlar qorunur</div>
+              </div>
+            </div>
+            <div style="margin-top:10px; line-height:1.6;">
+              Bu səhifə GitHub Pages üçün hazırdır (tək fayl). İstəsəniz, şəkilləri və real mətnləri əlavə edib
+              daha da genişləndirə bilərik.
+            </div>
+          </div>
+
+          <div class="tile">
+            <h3>⚙️ Tələbələr üçün faydalı</h3>
+            <p>
+              Buraya Telegram/Instagram linkləri, tələbə kabineti linki (əgər varsa), elanlar və ya “Daxil ol” düyməsi
+              əlavə edə bilərsiniz.
+            </p>
+            <div class="links">
+              <a href="#" onclick="return false;">Instagram</a>
+              <a href="#" onclick="return false;">Telegram</a>
+              <a href="#" onclick="return false;">Tələbə kabineti</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+  <!-- Modal -->
+  <div class="modalBackdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+    <div class="modal">
+      <div class="modalHeader">
+        <div>
+          <h3 id="modalTitle">Qeydiyyat</h3>
+          <p id="modalSubtitle">Məlumatları doldurun — sizə geri dönüş edək.</p>
+        </div>
+        <button class="close" id="btnCloseModal" type="button" aria-label="Bağla">✕</button>
+      </div>
+
+      <div class="modalBody">
+        <form id="enrollForm" style="display:grid; gap:10px;">
+          <div class="field">
+            <label for="eCourse">Kurs</label>
+            <select id="eCourse" name="course" required>
+              <option value="" disabled>Seçin…</option>
+              <option>İngilis dili</option>
+              <option>Riyaziyyat</option>
+              <option>İT / Proqramlaşdırma</option>
+              <option>Hazırlıq / Abituriyent</option>
+              <option>Digər</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="eName">Ad Soyad</label>
+            <input id="eName" name="name" placeholder="Ad Soyad" required />
+          </div>
+          <div class="field">
+            <label for="ePhone">Telefon</label>
+            <input id="ePhone" name="phone" placeholder="+994 xx xxx xx xx" inputmode="tel" required />
+          </div>
+          <div class="field">
+            <label for="eNote">Qeyd (opsional)</label>
+            <textarea id="eNote" name="note" placeholder="Məs: Səviyyəm B1, həftəiçi axşam uyğundur…"></textarea>
+          </div>
+
+          <div style="display:flex; gap:10px; flex-wrap:wrap; margin-top:6px;">
+            <button class="btn primary" type="submit">✅ Müraciəti hazırla</button>
+            <button class="btn" type="button" id="btnSendWAEnroll">💬 WhatsApp-a göndər</button>
+            <button class="btn" type="button" id="btnSendMailEnroll">📧 Email-ə göndər</button>
+          </div>
+
+          <div class="finePrint">
+            * WhatsApp/email düymələri mesajı avtomatik hazırlayıb açır (server lazım deyil).
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast -->
+  <div class="toast" id="toast" role="status" aria-live="polite">
+    <strong id="toastTitle">Hazırdır</strong>
+    <span id="toastMsg">Mesaj yaradıldı.</span>
+  </div>
+
+  <script>
+    // ====== CONFIG (edit these) ======
+    const CONFIG = {
+      academyName: "Günay Academy",
+      phoneNumber: "+994XXXXXXXXX",     // put real phone for tel: links
+      email: "info@gunayacademy.az",    // put real email
+      whatsappNumber: "994XXXXXXXXX",   // digits only (Azerbaijan example: 994501234567)
+      mapQuery: "Baku Azerbaijan",      // for map open
+    };
+
+    // ====== Helpers ======
+    const $ = (sel, root=document) => root.querySelector(sel);
+    const $$ = (sel, root=document) => Array.from(root.querySelectorAll(sel));
+
+    function toast(title, msg){
+      $("#toastTitle").textContent = title;
+      $("#toastMsg").textContent = msg;
+      const t = $("#toast");
+      t.style.display = "block";
+      clearTimeout(window.__toastTimer);
+      window.__toastTimer = setTimeout(() => t.style.display = "none", 3600);
+    }
+
+    function cleanPhone(p){
+      return (p || "").replace(/[^\d+]/g, "").trim();
+    }
+
+    function makeWhatsAppLink(message){
+      const num = CONFIG.whatsappNumber.replace(/[^\d]/g, "");
+      const text = encodeURIComponent(message);
+      return `https://wa.me/${num}?text=${text}`;
+    }
+
+    function makeMailTo(subject, body){
+      return `mailto:${encodeURIComponent(CONFIG.email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    }
+
+    // ====== Header actions ======
+    $("#year").textContent = new Date().getFullYear();
+
+    $("#btnBurger").addEventListener("click", () => {
+      const m = $("#mobileNav");
+      const isOpen = getComputedStyle(m).display !== "none";
+      m.style.display = isOpen ? "none" : "block";
+    });
+
+    $$(".mobileLink").forEach(a => a.addEventListener("click", () => {
+      $("#mobileNav").style.display = "none";
+    }));
+
+    $("#btnWhatsApp").addEventListener("click", () => {
+      const msg = `Salam! ${CONFIG.academyName} barədə məlumat almaq istəyirəm.`;
+      window.open(makeWhatsAppLink(msg), "_blank");
+    });
+
+    // ====== Modal ======
+    const modalBackdrop = $("#modalBackdrop");
+
+    function openModal(courseName){
+      if(courseName){
+        $("#eCourse").value = courseName;
+        $("#modalTitle").textContent = `Qeydiyyat — ${courseName}`;
+        $("#modalSubtitle").textContent = "Məlumatları doldurun — sizə tezliklə geri dönüş edək.";
+      } else {
+        $("#modalTitle").textContent = "Qeydiyyat";
+        $("#modalSubtitle").textContent = "Məlumatları doldurun — sizə geri dönüş edək.";
+      }
+      modalBackdrop.style.display = "flex";
+      setTimeout(() => $("#eName").focus(), 50);
+    }
+
+    function closeModal(){
+      modalBackdrop.style.display = "none";
+    }
+
+    $("#btnCloseModal").addEventListener("click", closeModal);
+    modalBackdrop.addEventListener("click", (e) => {
+      if(e.target === modalBackdrop) closeModal();
+    });
+    document.addEventListener("keydown", (e) => {
+      if(e.key === "Escape") closeModal();
+    });
+
+    $("#btnEnrollTop").addEventListener("click", () => openModal());
+    $("#btnEnrollHero").addEventListener("click", () => openModal());
+    $("#btnEnrollBottom").addEventListener("click", () => openModal());
+
+    // ====== Course buttons ======
+    $("#courseGrid").addEventListener("click", (e) => {
+      const btn = e.target.closest("button[data-action]");
+      if(!btn) return;
+
+      const card = e.target.closest(".course");
+      const courseName = card?.dataset?.course || "Kurs";
+
+      if(btn.dataset.action === "details"){
+        toast("Ətraflı məlumat", `${courseName} üçün məlumat hissəsini doldura bilərsiniz (müddət, qiymət, qrafik).`);
+      }
+      if(btn.dataset.action === "enroll"){
+        openModal(courseName);
+      }
+    });
+
+    $("#btnSeeAll").addEventListener("click", () => {
+      toast("Kurslar", "İstəsəniz, kursları JSON-dan oxuyan (dinamik) versiya da qura bilərik.");
+      document.querySelector("#courses").scrollIntoView({behavior:"smooth"});
+    });
+
+    // ====== Quick lead form (demo) ======
+    $("#quickLeadForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = $("#qName").value.trim();
+      const phone = cleanPhone($("#qPhone").value);
+      const course = $("#qCourse").value;
+
+      if(!name || !phone || !course){
+        toast("Xəta", "Zəhmət olmasa bütün sahələri doldurun.");
+        return;
+      }
+
+      const message =
+        `Salam! Sürətli müraciət göndərirəm.\n\n` +
+        `Ad Soyad: ${name}\nTelefon: ${phone}\nKurs: ${course}\n\n` +
+        `Zəhmət olmasa mənimlə əlaqə saxlayın.`;
+
+      toast("Hazırdır", "WhatsApp açılır — mesaj hazır vəziyyətdədir.");
+      window.open(makeWhatsAppLink(message), "_blank");
+      e.target.reset();
+    });
+
+    // ====== Contact form ======
+    $("#contactForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = $("#cName").value.trim();
+      const phone = cleanPhone($("#cPhone").value);
+      const msg = $("#cMsg").value.trim();
+      if(!name || !phone || !msg){
+        toast("Xəta", "Zəhmət olmasa bütün sahələri doldurun.");
+        return;
+      }
+      toast("Göndərməyə hazırdır", "WhatsApp və ya Email düymələrindən birini seçin.");
+    });
+
+    $("#btnMailTo").addEventListener("click", () => {
+      const name = $("#cName").value.trim();
+      const phone = cleanPhone($("#cPhone").value);
+      const msg = $("#cMsg").value.trim();
+      const body =
+        `Ad Soyad: ${name}\nTelefon: ${phone}\n\nMesaj:\n${msg}\n\n` +
+        `Göndərən: website (GitHub Pages)`;
+      window.location.href = makeMailTo(`${CONFIG.academyName} — Yeni mesaj`, body);
+    });
+
+    $("#btnWAFromForm").addEventListener("click", () => {
+      const name = $("#cName").value.trim();
+      const phone = cleanPhone($("#cPhone").value);
+      const msg = $("#cMsg").value.trim();
+      const message =
+        `Salam! ${CONFIG.academyName} saytından mesaj.\n\n` +
+        `Ad Soyad: ${name}\nTelefon: ${phone}\n\nMesaj:\n${msg}`;
+      window.open(makeWhatsAppLink(message), "_blank");
+    });
+
+    // ====== Enroll form in modal ======
+    function buildEnrollMessage(){
+      const course = $("#eCourse").value;
+      const name = $("#eName").value.trim();
+      const phone = cleanPhone($("#ePhone").value);
+      const note = $("#eNote").value.trim();
+
+      if(!course || !name || !phone){
+        toast("Xəta", "Kurs, ad və telefon mütləqdir.");
+        return null;
+      }
+
+      return (
+        `Salam! ${CONFIG.academyName} üçün qeydiyyat müraciəti.\n\n` +
+        `Kurs: ${course}\nAd Soyad: ${name}\nTelefon: ${phone}\n` +
+        (note ? `Qeyd: ${note}\n` : "") +
+        `\nZəhmət olmasa mənimlə əlaqə saxlayın.`
+      );
+    }
+
+    $("#enrollForm").addEventListener("submit", (e) => {
+      e.preventDefault();
+      const message = buildEnrollMessage();
+      if(!message) return;
+      toast("Hazırdır", "Mesaj hazırlandı. WhatsApp və ya Email ilə göndərə bilərsiniz.");
+    });
+
+    $("#btnSendWAEnroll").addEventListener("click", () => {
+      const message = buildEnrollMessage();
+      if(!message) return;
+      window.open(makeWhatsAppLink(message), "_blank");
+    });
+
+    $("#btnSendMailEnroll").addEventListener("click", () => {
+      const course = $("#eCourse").value || "Qeydiyyat";
+      const message = buildEnrollMessage();
+      if(!message) return;
+      window.location.href = makeMailTo(`${CONFIG.academyName} — Qeydiyyat (${course})`, message);
+    });
+
+    // ====== Utilities buttons ======
+    $("#btnCall").addEventListener("click", () => {
+      const phone = CONFIG.phoneNumber || "+994";
+      window.location.href = `tel:${phone}`;
+    });
+
+    $("#btnMap").addEventListener("click", () => {
+      const q = encodeURIComponent(CONFIG.mapQuery);
+      window.open(`https://www.google.com/maps/search/?api=1&query=${q}`, "_blank");
+    });
+
+    $("#btnDownloadSchedule").addEventListener("click", () => {
+      // creates a simple CSV on the fly
+      const csv =
+        "Gun,Saat,Kurs,Format,Qeyd\n" +
+        "B.e.,18:00-19:30,Ingilis dili,Qrup,A2-B1\n" +
+        "C.a.,19:00-20:30,Riyaziyyat,Qrup,Abituriyent\n" +
+        "C.,18:30-20:00,IT / Proqramlasdirma,Qrup,Baslanqic\n" +
+        "S.,11:00-12:30,Ingilis dili,Qrup,Danisiq klubu\n";
+
+      const blob = new Blob([csv], {type:"text/csv;charset=utf-8;"});
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "cedvel.csv";
+      document.body.appendChild(a);
+      a.click();
+      a.remove();
+      URL.revokeObjectURL(url);
+      toast("Yükləndi", "cedvel.csv faylı endirildi.");
+    });
+  </script>
+</body>
+</html>
